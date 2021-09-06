@@ -13,20 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class clienteController {
 	
 	private String nome;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	
 	
 	@GetMapping("/{consultar}")
 	public String GetCliente() {
-		nome = "Jão";
 		return nome;
 		
 	}
@@ -40,6 +30,6 @@ public class clienteController {
 
 	@DeleteMapping("/{deletar}")
 	public String deletar() {
-		return " ";
+		return "";
 	}
 }
