@@ -3,6 +3,7 @@ package br.com.ondatermica.ondatermica.controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,21 +16,26 @@ public class clienteController {
 	private String nome;
 	
 	
-	@GetMapping("/{consultar}")
+	@GetMapping("/consultar")
 	public String GetCliente() {
 		return nome;
 		
 	}
 	
-	@PostMapping("/{criar}")
+	@PostMapping("/criar")
 	public String cadastrar(){
-		 
 		return "Usuário criado com sucesso";
 		
 	}
+	
+	@PutMapping("/atualizar")
+	public String atualizar() {
+		return "Atualizado com sucesso";
+		
+	}
 
-	@DeleteMapping("/{deletar}")
+	@DeleteMapping("/deletar")
 	public String deletar() {
-		return "";
+		return " ";
 	}
 }
