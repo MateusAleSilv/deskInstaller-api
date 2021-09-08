@@ -33,8 +33,8 @@ public class clienteController {
 	
 	@PutMapping("/{put}")
 	public String atualizar(@PathVariable String nNome) {
-		this.nome = nNome;
-			return "Nome atualizado com sucesso";
+		this.salvar(nNome);
+		return "Nome atualizado com sucesso";
 	}
 	
 	@DeleteMapping("/{del}")
