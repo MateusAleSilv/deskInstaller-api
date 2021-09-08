@@ -8,38 +8,50 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ondatermica.ondatermica.model.*;
 
 @RestController
-@RequestMapping("/cliente")
-public class clienteController {
+@RequestMapping("/clientes")
+public class clienteController extends cliente {	
+		
+	//Não consegui fazer rodar, fica dando erro quando chama o metodo
 	
-	public String nome = "";
 	
-	
-	@GetMapping("/{get}")
-	public String clientes() {
-		if(nome.isEmpty()) {
-			return "Não existe Clientes";
-		} else {
+		@GetMapping
+		public Object consultar() {
+			setNome(null);
+			if(this.getNome() == null) {
+				return this.getNome();
+			} else {
+				return "BlaBla";
+			}
+		}	
+		
+		@PostMapping("/{nome}")
+		public Object salvar(@PathVariable String nome){
+	        this.setNome(null);
+			if(this.getNome() == null) {
+	        	this.setNome(nome);
+	        } 
 			return nome;
+	   }
+	        
+		
+		@PutMapping("/{nome}")
+		public Object atualizar(@PathVariable String nNome) {
+			this.setNome(null);
+			if(this.getNome() == null) {
+				return "Não há nomes para alterar";
+			} 
+			return nNome;
 		}
-	}	
+		
+		@DeleteMapping
+		public Object deletar() {
+			this.setNome(null);
+			return "";
+		}
+
 	
-	@PostMapping("/{nome}")
-	public String salvar(@PathVariable String nome){
-	  this.nome = nome;
-          return "Nome salvo com sucesso";
-	}
-	
-	@PutMapping("/{put}")
-	public String atualizar(@PathVariable String nNome) {
-		this.salvar(nNome);
-		return "Nome atualizado com sucesso";
-	}
-	
-	@DeleteMapping("/{del}")
-	public String deletar() {
-		this.nome = "";
-		return "";
-	}
+
 }
