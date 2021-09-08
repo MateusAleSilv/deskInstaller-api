@@ -18,13 +18,12 @@ public class clienteController {
 	
 	@GetMapping("/{get}")
 	public String clientes() {
-		if(nome == null) {
+		if(nome.isEmpty()) {
 			return "Não existe Clientes";
 		} else {
 			return nome;
 		}
 	}	
-	
 	
 	@PostMapping("/{nome}")
 	public String salvar(@PathVariable String nome){
@@ -33,14 +32,14 @@ public class clienteController {
 	}
 	
 	@PutMapping("/{put}")
-	public String atualizar(@PathVariable String nome) {
-		this.nome = nome;
+	public String atualizar(@PathVariable String nNome) {
+		this.nome = nNome;
 			return "Nome atualizado com sucesso";
 	}
 	
 	@DeleteMapping("/{del}")
 	public String deletar() {
+		this.nome = "";
 		return "";
 	}
-
 }
