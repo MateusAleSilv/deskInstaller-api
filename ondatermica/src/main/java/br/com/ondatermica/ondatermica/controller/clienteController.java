@@ -1,8 +1,8 @@
 package br.com.ondatermica.ondatermica.controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cliente")
 public class clienteController {
 	
-	public String nome = "Mateus";
+	public String nome = "";
 	
 	
 	@GetMapping("/{get}")
@@ -25,33 +25,22 @@ public class clienteController {
 		}
 	}	
 	
-	@PostMapping("/{post}")
-	public String create(){
-		if(nome == null) {
-			String novoNome = null;
-			nome = novoNome;
-			novoNome = "Maria";
-			return novoNome;
-		} else {
-			return "Nome Já criado";
-		}
+	
+	@PostMapping("/{nome}")
+	public String salvar(@PathVariable String nome){
+	  this.nome = nome;
+          return "Nome salvo com sucesso";
 	}
 	
 	@PutMapping("/{put}")
-	public String update() {
-	   if(nome != null) {
-		   String novoNome = null;
-		   nome = novoNome;
-		   novoNome = "João";
-		   return novoNome;
-	   } else {
-		   return "Sem nome para alterar";
-	   }
+	public String atualizar(@PathVariable String nome) {
+		this.nome = nome;
+			return "Nome atualizado com sucesso";
 	}
 	
 	@DeleteMapping("/{del}")
-	public void deletar() {
-		return;
+	public String deletar() {
+		return "";
 	}
 
 }
