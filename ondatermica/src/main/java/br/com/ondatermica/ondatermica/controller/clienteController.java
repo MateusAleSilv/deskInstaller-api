@@ -2,56 +2,50 @@ package br.com.ondatermica.ondatermica.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ondatermica.ondatermica.model.*;
+import br.com.ondatermica.ondatermica.model.cliente;
 
 @RestController
 @RequestMapping("/clientes")
-public class clienteController extends cliente {	
+public class clienteController {	
 		
-	//Não consegui fazer rodar, fica dando erro quando chama o metodo
+	
+	private cliente cliente;
 	
 	
-		@GetMapping
-		public Object consultar() {
-			setNome(null);
-			if(this.getNome() == null) {
-				return this.getNome();
-			} else {
-				return "BlaBla";
-			}
-		}	
-		
-		@PostMapping("/{nome}")
-		public Object salvar(@PathVariable String nome){
-	        this.setNome(null);
-			if(this.getNome() == null) {
-	        	this.setNome(nome);
-	        } 
-			return nome;
-	   }
-	        
-		
-		@PutMapping("/{nome}")
-		public Object atualizar(@PathVariable String nNome) {
-			this.setNome(null);
-			if(this.getNome() == null) {
-				return "Não há nomes para alterar";
-			} 
-			return nNome;
-		}
-		
-		@DeleteMapping
-		public Object deletar() {
-			this.setNome(null);
-			return "";
-		}
-
+	@GetMapping
+	public Object consultar() {
+		if (this.cliente == null) {
+			return "Não existe clientes";
+		} else if(this.cliente != null) {
+			return this.cliente;
+		} 
+		return "ERRO";
+	}
+	
+	@PostMapping("/{nome}")
+	public Object salvar(cliente nome){
+	  this.cliente = nome;
+          return "Nome inserido";
+	}
+	
+	@PutMapping("/{nome}")
+	public Object atualizar(cliente nome1){
+		this.cliente.setNome(nome1);
+		return "Nome Atualizado";
+	}
+	
+	@DeleteMapping
+	public Object deletar() {
+		this.cliente = null;
+		return "";
+	}
+	
+	
 	
 
 }
