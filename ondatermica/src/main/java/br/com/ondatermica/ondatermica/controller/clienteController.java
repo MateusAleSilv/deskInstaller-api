@@ -2,6 +2,7 @@ package br.com.ondatermica.ondatermica.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,14 +29,15 @@ public class clienteController {
 	}
 	
 	@PostMapping("/{nome}")
-	public Object salvar(cliente nome){
-	  this.cliente = nome;
+	public Object salvar(@PathVariable("nome") String nome){
+		this.cliente = new cliente();
+		this.cliente.setNome(nome);
           return "Nome inserido";
 	}
 	
 	@PutMapping("/{nome}")
-	public Object atualizar(cliente nome1){
-		this.cliente.setNome(nome1);
+	public Object atualizar(@PathVariable("nome") String nome){
+		this.cliente.setNome(nome);
 		return "Nome Atualizado";
 	}
 	
