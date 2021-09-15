@@ -2,61 +2,91 @@ package br.com.ondatermica.ondatermica.model;
 
 public class Cliente {
 
-	private Object nome = null;
-	private Object dataNasc = null;
-	private Object cpf = null;
-	private Object rg = null;
-	private Object email = null;
-	private Object telefone = null;
-
-	// Get e Set
-	public Object getNome() {
-		return this.nome;
+	private String nome;
+	private String dataNasc;
+	private String cpf;
+	private String rg;
+	private String email;
+	private String telefone;
+	private float salario;
+	
+	
+	
+	public Cliente() {
+		super();
 	}
 
-	public void setNome(Object nome) {
+	//Get e Set
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public Object getDataNasc() {
+
+	public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(Object dataNasc) {
+
+	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 
-	public Object getCpf() {
+
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Object cpf) {
+
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Object getRg() {
+
+	public String getRg() {
 		return rg;
 	}
 
-	public void setRg(Object rg) {
+
+	public void setRg(String rg) {
 		this.rg = rg;
 	}
 
-	public Object getEmail() {
+
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(Object email) {
+
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public Object getTelefone() {
+
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Object telefone) {
+
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
+
+	public float getSalario() {
+		return salario;
+	}
+
+
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+
+	
 	
 	
 	
