@@ -33,18 +33,24 @@ public class ClienteController {
 	
 	@GetMapping("/email/{email}")
 	public ResponseEntity<Cliente> email(@PathVariable("email") String email) {
-		for (int i=0;i<listaCliente.size();i++) {
-			if(this.listaCliente.get(i).getEmail() != null) {
-			return ResponseEntity.ok(this.listaCliente.get(i));
+		if(this.listaCliente != null) {
+			for (int i=0;i<listaCliente.size();i++) {
+				if(this.listaCliente.get(i).getEmail().equalsIgnoreCase(email)) {
+					return ResponseEntity.ok(this.listaCliente.get(i));
+				}
 			}
-		}
+		} 
 		return ResponseEntity.notFound().build();
 	}
 	
 	@GetMapping("/cpf/{cpf}")
 	public ResponseEntity<Cliente> cpf(@PathVariable("cpf") String cpf) {
-		if(this.cliente.getCpf().equalsIgnoreCase(cpf)) {
-			return ResponseEntity.ok(cliente);
+		if(this.listaCliente != null) {
+			for (int i=0;i<listaCliente.size();i++) {
+				if(this.listaCliente.get(i).getCpf().equalsIgnoreCase(cpf)) {
+					return ResponseEntity.ok(this.listaCliente.get(i));
+				}
+			}
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -61,14 +67,34 @@ public class ClienteController {
 	
 	@PutMapping
 	public ResponseEntity<String> atualizar(@RequestBody Cliente cliente){
-		this.cliente = cliente;
-		return ResponseEntity.ok("Dados atualizados");
+		if(this.listaCliente != null) {
+			for (int i=0;i<listaCliente.size();i++) {
+				if(this.listaCliente.get(i).getCpf().equalsIgnoreCase(cliente.getCpf())) {
+					this.listaCliente.get(i).setNome(cliente.getNome());
+					this.listaCliente.get(i).setDataNasc(cliente.getDataNasc());
+					this.listaCliente.get(i).setRg(cliente.getRg());
+					this.listaCliente.get(i).setEmail(cliente.getEmail());
+					this.listaCliente.get(i).setTelefone(cliente.getTelefone());
+					this.listaCliente.get(i).setSalario(cliente.getSalario());
+					return ResponseEntity.ok("Dados Atualizados");
+				}	
+			}
+		}	
+		return ResponseEntity.notFound().build();
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<String> deletar() {
-		this.cliente = null;
-		return ResponseEntity.ok("Cliente excluido com sucesso");
+	@DeleteMapping("/{cpf}")
+	public ResponseEntity<String> deletar(@PathVariable("cpf") String cpf) {
+		if(this.listaCliente != null) {
+			for(int i=0;i<listaCliente.size();i++) {
+				if(this.listaCliente.get(i).getCpf().equalsIgnoreCase(cpf)) {
+					this.listaCliente.remove(i);
+					return ResponseEntity.ok("Cliente removido");
+				}
+			}
+		}
+		return ResponseEntity.notFound().build();
+		
 	}
 	
 	
