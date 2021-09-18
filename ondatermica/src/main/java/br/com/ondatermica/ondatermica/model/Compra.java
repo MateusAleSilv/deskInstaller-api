@@ -1,19 +1,29 @@
 package br.com.ondatermica.ondatermica.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Compra {
 
-	private String numeroCompra;
+	private Integer numeroCompra;
 	private String dataCompra;
 	private String dataEntrega;
 	private float valorProduto;
 	private float valorImposto;
 	private float valorTotal;
+	private Cliente cliente;
+	private List<Itens> listaItens;
+	
+	public Compra() {
+		this.listaItens = new ArrayList<Itens>();
+	}
+	
 	
 	//Get e Set
-	public String getNumeroCompra() {
+	public Integer getNumeroCompra() {
 		return numeroCompra;
 	}
-	public void setNumeroCompra(String numeroCompra) {
+	public void setNumeroCompra(Integer numeroCompra) {
 		this.numeroCompra = numeroCompra;
 	}
 	public String getDataCompra() {
@@ -46,6 +56,21 @@ public class Compra {
 	public void setValorTotal(float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
+	//-------------------------------------------------
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public List<Itens> getListaItens() {
+		return listaItens;
+	}
+	public void setListaItens(List<Itens> listaItens) {
+		this.listaItens = listaItens;
+	}
+	
 	
 	
 }
