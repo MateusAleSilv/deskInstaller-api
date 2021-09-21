@@ -1,32 +1,71 @@
 package br.com.ondatermica.ondatermica.model;
 
-public class Itens {
+import java.io.Serializable;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "Itens")
+public class Itens implements Serializable {
 	
-	private int numero;
-	private int quantidade;
-	private float valor;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "iditens")
+	private int idItens;
+	@Column(name = "itemnumero")
+	private int itemNumero;
+	@Column(name = "itemquantidade")
+	private int itemQuantidade;
+	@Column(name = "itemvalor")
+	private float itemValor;
+	@Column(name = "valorImposto")
 	private float valorImposto;
+	
+	
+	@JoinColumn(name = "produto", referencedColumnName= "codigo")
+	@ManyToOne
 	private Produtos produtos;
 	
 	
+	
 	// Get e Set
-	public int getNumero() {
-		return numero;
+	public int getIdItens() {
+		return idItens;
 	}
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setIdItens(int idItens) {
+		this.idItens = idItens;
 	}
-	public int getQuantidade() {
-		return quantidade;
+	public int getItemNumero() {
+		return itemNumero;
 	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setItemNumero(int itemNumero) {
+		this.itemNumero = itemNumero;
 	}
-	public float getValor() {
-		return valor;
+	public int getItemQuantidade() {
+		return itemQuantidade;
 	}
-	public void setValor(float valor) {
-		this.valor = valor;
+	public void setItemQuantidade(int itemQuantidade) {
+		this.itemQuantidade = itemQuantidade;
+	}
+	public float getItemValor() {
+		return itemValor;
+	}
+	public void setItemValor(float itemValor) {
+		this.itemValor = itemValor;
 	}
 	public float getValorImposto() {
 		return valorImposto;
@@ -40,8 +79,15 @@ public class Itens {
 	public void setProdutos(Produtos produtos) {
 		this.produtos = produtos;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return "Itens [numero=" + itemNumero + ", quantidade=" + itemQuantidade + ", valor=" + itemValor + ", valorImposto="
+				+ valorImposto + ", produtos=" + produtos + "]";
+	}
 	
 }

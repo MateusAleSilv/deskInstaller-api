@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.ondatermica.ondatermica.model.Cliente;
 import br.com.ondatermica.ondatermica.model.Compra;
 import br.com.ondatermica.ondatermica.model.Itens;
 import io.swagger.annotations.Api;
@@ -57,7 +56,7 @@ public class CompraController {
 	public ResponseEntity<Compra> dataEntrega(@PathVariable("dataEntrega") String dataEntrega) {
 		if(this.listaCompras != null) {
 			for(int i=0;i<listaCompras.size();i++) {
-				if(this.listaCompras.get(i).getDataEntrega().equalsIgnoreCase(dataEntrega)) {
+				if(this.listaCompras.get(i).getDataEntrega().equals(dataEntrega)) {
 					return ResponseEntity.ok(this.listaCompras.get(i));
 				}
 			}
@@ -70,7 +69,7 @@ public class CompraController {
 	public ResponseEntity<Compra> dataCompra(@PathVariable("dataCompra") String dataCompra) {
 		if(this.listaCompras != null) {
 			for(int i=0;i<listaCompras.size();i++) {
-				if(this.listaCompras.get(i).getDataCompra().equalsIgnoreCase(dataCompra)) {
+				if(this.listaCompras.get(i).getDataCompra().equals(dataCompra)) {
 					return ResponseEntity.ok(this.listaCompras.get(i));
 				}
 			}
@@ -113,11 +112,11 @@ public class CompraController {
 			for(int i=0;i<listaCompras.size();i++) {
 				if(this.listaCompras.get(i).getNumeroCompra() == numero) {
 					
-					item.setValor(calcularValorDoItem(item.getQuantidade(), item.getProdutos().getValor()));
+					item.setItemValor(calcularValorDoItem(item.getItemQuantidade(), item.getProdutos().getValor()));
 					
 					this.listaCompras.get(i).getListaItens().add(item);
 					
-					this.listaCompras.get(i).setValorProduto(this.listaCompras.get(i).getValorProduto() + item.getValor());
+					this.listaCompras.get(i).setValorProduto(this.listaCompras.get(i).getValorProduto() + item.getItemValor());
 					
 					//item.setValorImposto(calcularImposto(item.getProdutos().getValor(), item.getProdutos().getIcms()));
 					
