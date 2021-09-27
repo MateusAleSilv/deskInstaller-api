@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import br.com.ondatermica.ondatermica.model.Produtos;
 
 @Repository
-public interface ProdutosRepository extends JpaRepository<Produtos, Integer> {
+public interface ProdutosRepository extends JpaRepository<Produtos, Long> {
 	
 	//Consutla por descricao
 	Optional<List<Produtos>> findByDescricaoContainingOrderByDescricao(String descricao);
 	
 	//Consulta por codigo
-	Optional<Produtos> findById(int codigo);
+	Optional<Produtos> findById(int id);
 	
 }

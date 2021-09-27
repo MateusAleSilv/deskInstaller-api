@@ -7,14 +7,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import br.com.ondatermica.ondatermica.model.Cliente;
-import br.com.ondatermica.ondatermica.model.Produtos;
+
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-	//Consultar por ID
-	Optional<List<Cliente>> findByIdClienteContainingOrderByIdCliente(String idCliente);
+	//Consulta por ID
+	Optional<Cliente> findById(int id);
 	
-	//Consulta por CPF
-	Optional<Produtos> findById(int codigo);
+	//Consultar por CPF
+	Optional<List<Cliente>> findByCpfContainingOrderByCpf(String cpf);
+	
+	//Consultar por email
+	Optional<List<Cliente>> findByEmailContainingOrderByEmail(String email);
+
 }

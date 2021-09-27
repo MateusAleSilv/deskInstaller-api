@@ -12,12 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 @Entity
 @Table(name = "compra")
@@ -30,71 +29,68 @@ public class Compra implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name = "numerocompra")
-	private Integer numeroCompra;
-	@Column(name = "dataCompra")
+	@Column(name = "id")
+	private int id;
+	@Column(name = "datacompra")
 	@Temporal(TemporalType.DATE)
-	private Date dataCompra;
-	@Column(name = "dataEntrega")
+	private Date datacompra;
+	@Column(name = "dataentrega")
 	@Temporal(TemporalType.DATE)
-	private Date dataEntrega;
-	@Column(name = "valorProduto")
-	private float valorProduto;
-	@Column(name = "valorImposto")
-	private float valorImposto;
-	@Column(name = "valorTotal")
-	private float valorTotal;
-	
-	
-	@JoinColumn(name = "cliente", referencedColumnName= "idcliente")
-	@ManyToOne
+	private Date dataentrega;
+	@Column(name = "valorproduto")
+	private float valorproduto;
+	@Column(name = "valorimposto")
+	private float valorimposto;
+	@Column(name = "valortotal")
+	private float valortotal;
+	@OneToMany
+	@JoinColumn(name = "cliente", referencedColumnName= "id")
 	private Cliente cliente;
-	@ManyToMany
-	private List<Itens> listaItens;
+	@JoinColumn(name = "compraItens", referencedColumnName= "id")
+	@OneToMany
+	private CompraItens compraItens;
 	
+	// Construtor
+		//public Compra() {
+			//this.compraItens = new ArrayList<CompraItens>();
+		//}
 	
-	//Construtor
-	public Compra() {
-		this.listaItens = new ArrayList<Itens>();
+	// Get e Set
+	public int getId() {
+		return id;
 	}
-	
-	
-	//Get e Set
-	public Integer getNumeroCompra() {
-		return numeroCompra;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setNumeroCompra(Integer numeroCompra) {
-		this.numeroCompra = numeroCompra;
+	public Date getDatacompra() {
+		return datacompra;
 	}
-	public Date getDataCompra() {
-		return dataCompra;
+	public void setDatacompra(Date datacompra) {
+		this.datacompra = datacompra;
 	}
-	public void setDataCompra(Date dataCompra) {
-		this.dataCompra = dataCompra;
+	public Date getDataentrega() {
+		return dataentrega;
 	}
-	public Date getDataEntrega() {
-		return dataEntrega;
+	public void setDataentrega(Date dataentrega) {
+		this.dataentrega = dataentrega;
 	}
-	public void setDataEntrega(Date dataEntrega) {
-		this.dataEntrega = dataEntrega;
+	public float getValorproduto() {
+		return valorproduto;
 	}
-	public float getValorProduto() {
-		return valorProduto;
+	public void setValorproduto(float valorproduto) {
+		this.valorproduto = valorproduto;
 	}
-	public void setValorProduto(float valorProdutos) {
-		this.valorProduto = valorProdutos;
+	public float getValorimposto() {
+		return valorimposto;
 	}
-	public float getValorImposto() {
-		return valorImposto;
+	public void setValorimposto(float valorimposto) {
+		this.valorimposto = valorimposto;
 	}
-	public void setValorImposto(float valorImpostor) {
-		this.valorImposto = valorImpostor;
+	public float getValortotal() {
+		return valortotal;
 	}
-	public float getValorTotal() {
-		return valorTotal;
-	}
-	public void setValorTotal(float valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setValortotal(float valortotal) {
+		this.valortotal = valortotal;
 	}
 	public Cliente getCliente() {
 		return cliente;
@@ -102,21 +98,13 @@ public class Compra implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public List<Itens> getListaItens() {
-		return listaItens;
-	}
-	public void setListaItens(List<Itens> listaItens) {
-		this.listaItens = listaItens;
-	}
-
+	
 
 	@Override
 	public String toString() {
-		return "Compra [numeroCompra=" + numeroCompra + ", dataCompra=" + dataCompra + ", dataEntrega=" + dataEntrega
-				+ ", valorProduto=" + valorProduto + ", valorImposto=" + valorImposto + ", valorTotal=" + valorTotal
-				+ ", cliente=" + cliente + ", listaItens=" + listaItens + "]";
+		return "Compra [id=" + id + ", datacompra=" + datacompra + ", dataentrega=" + dataentrega + ", valorproduto="
+				+ valorproduto + ", valorimposto=" + valorimposto + ", valortotal=" + valortotal + ", cliente="
+				+ cliente + ", compraItens=" + compraItens + "]";
 	}
-	
-	
 	
 }

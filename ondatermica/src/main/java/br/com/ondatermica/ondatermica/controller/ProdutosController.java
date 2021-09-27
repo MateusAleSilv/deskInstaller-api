@@ -25,6 +25,7 @@ public class ProdutosController {
 	@Autowired
 	private ProdutosRepository produtosRepository;
 
+	// --------------------------------------------------------------------------------------------------------------
 	
 	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<Optional<List<Produtos>>> descricao(@PathVariable("descricao") String descricao ) {
@@ -34,15 +35,22 @@ public class ProdutosController {
 		 return ResponseEntity.ok(produtosRepository.findByDescricaoContainingOrderByDescricao(descricao));	
 	}
 	
-	@GetMapping("/codigo/{codigo}")
-	public ResponseEntity<Optional<Produtos>> codigo(@PathVariable("codigo") Integer codigo){
-		return ResponseEntity.ok(produtosRepository.findById(codigo));
-		
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Optional<Produtos>> codigo(@PathVariable("id") int id){
+	 return ResponseEntity.ok(produtosRepository.findById(id));
 	}
+	
+	// ----------------------------------------------------------------------------------------------------------------
 	
 	@PostMapping("/salvar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Produtos salvar(@Validated @RequestBody Produtos produtos) {
 		return produtosRepository.save(produtos);
 	}
+	
+	
+	
+	
+	
+	
 }

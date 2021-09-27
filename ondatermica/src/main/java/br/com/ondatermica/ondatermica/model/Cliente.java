@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 
 	/**
 	 * 
@@ -25,13 +25,13 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name= "idcliente")
-	private int idCliente;
+	@Column(name= "id")
+	private int id;
 	@Column(name = "nome")
 	private String nome;
-	@Column(name = "dataNasc")
+	@Column(name = "nasc")
 	@Temporal(TemporalType.DATE)
-	private Date dataNasc;
+	private Date nasc;
 	@Column(name = "cpf")
 	private String cpf;
 	@Column(name = "rg")
@@ -44,21 +44,18 @@ public class Cliente implements Serializable{
 	private float salario;
 	
 
-	//Contrutor
+	//Construtor
 	public Cliente() {
 		super();
 	}
 
 	//Get e Set
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public int getIdCliente() {
-		return idCliente;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -66,11 +63,11 @@ public class Cliente implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getDataNasc() {
-		return dataNasc;
+	public Date getNasc() {
+		return nasc;
 	}
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setNasc(Date nasc) {
+		this.nasc = nasc;
 	}
 	public String getCpf() {
 		return cpf;
@@ -103,11 +100,15 @@ public class Cliente implements Serializable{
 		this.salario = salario;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", dataNasc=" + dataNasc + ", cpf=" + cpf + ", rg=" + rg + ", email=" + email
-				+ ", telefone=" + telefone + ", salario=" + salario + "]";
+		return "Cliente [idcliente=" + id + ", nome=" + nome + ", datanasc=" + nasc + ", cpf=" + cpf
+				+ ", rg=" + rg + ", email=" + email + ", telefone=" + telefone + ", salario=" + salario + "]";
 	}
+
+	
 
 	
 	

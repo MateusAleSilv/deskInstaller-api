@@ -9,12 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "Itens")
+@Table(name = "itens")
 public class Itens implements Serializable {
 	
 	/**
@@ -24,54 +27,51 @@ public class Itens implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Basic(optional = false)
-	@Column(name = "iditens")
-	private int idItens;
+	@Column(name= "id")
+	private int id;
 	@Column(name = "itemnumero")
-	private int itemNumero;
+	private int itemnumero;
 	@Column(name = "itemquantidade")
-	private int itemQuantidade;
+	private int itemquantidade;
 	@Column(name = "itemvalor")
-	private float itemValor;
-	@Column(name = "valorImposto")
-	private float valorImposto;
-	
-	
-	@JoinColumn(name = "produto", referencedColumnName= "codigo")
+	private float itemvalor;
+	@Column(name = "valorimposto")
+	private float valorimposto;
 	@ManyToOne
+	@JoinColumn(name = "produtos", referencedColumnName= "id")
 	private Produtos produtos;
 	
-	
-	
-	// Get e Set
-	public int getIdItens() {
-		return idItens;
+
+
+	public int getId() {
+		return id;
 	}
-	public void setIdItens(int idItens) {
-		this.idItens = idItens;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getItemNumero() {
-		return itemNumero;
+	public int getItemnumero() {
+		return itemnumero;
 	}
-	public void setItemNumero(int itemNumero) {
-		this.itemNumero = itemNumero;
+	public void setItemnumero(int itemnumero) {
+		this.itemnumero = itemnumero;
 	}
-	public int getItemQuantidade() {
-		return itemQuantidade;
+	public int getItemquantidade() {
+		return itemquantidade;
 	}
-	public void setItemQuantidade(int itemQuantidade) {
-		this.itemQuantidade = itemQuantidade;
+	public void setItemquantidade(int itemquantidade) {
+		this.itemquantidade = itemquantidade;
 	}
-	public float getItemValor() {
-		return itemValor;
+	public float getItemvalor() {
+		return itemvalor;
 	}
-	public void setItemValor(float itemValor) {
-		this.itemValor = itemValor;
+	public void setItemvalor(float itemvalor) {
+		this.itemvalor = itemvalor;
 	}
-	public float getValorImposto() {
-		return valorImposto;
+	public float getValorimposto() {
+		return valorimposto;
 	}
-	public void setValorImposto(float valorImposto) {
-		this.valorImposto = valorImposto;
+	public void setValorimposto(float valorimposto) {
+		this.valorimposto = valorimposto;
 	}
 	public Produtos getProdutos() {
 		return produtos;
@@ -79,15 +79,9 @@ public class Itens implements Serializable {
 	public void setProdutos(Produtos produtos) {
 		this.produtos = produtos;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
 	@Override
 	public String toString() {
-		return "Itens [numero=" + itemNumero + ", quantidade=" + itemQuantidade + ", valor=" + itemValor + ", valorImposto="
-				+ valorImposto + ", produtos=" + produtos + "]";
+		return "Itens [id=" + id + ", itemnumero=" + itemnumero + ", itemquantidade=" + itemquantidade
+				+ ", itemvalor=" + itemvalor + ", valorimposto=" + valorimposto + ", produtos=" + produtos + "]";
 	}
-	
 }
